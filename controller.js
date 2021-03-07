@@ -18,6 +18,7 @@ exports.showAll = function(req, res){
     });
 };
 
+//showbyid
 exports.showId = function(req, res){
     let id = req.params.id;
     connection.query("SELECT * FROM mahasiswa WHERE id_mahasiswa = ?",[id],
@@ -28,4 +29,20 @@ exports.showId = function(req, res){
                 response.ok(rows, res)
             }
         });
+};
+
+//insert data
+exports.addMhs = function(req, res){
+    var nim = req.body.nim;
+    var nama = req.body.nama;
+    var jurusan = req.body.jurusan;
+
+    connection.query("INSERT INTO mahasiswa (nim, nama, jurusan) VALUES(?,?,?)", [nim, nama, jurusan],
+    function(err , rows, fields){
+        if(err){
+            console.log(err);
+        }else{
+            response.ok("success",res)
+        }
+    });
 };
