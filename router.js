@@ -14,4 +14,10 @@ module.exports = function(app){
 
     app.route('/add')
         .post(jsonku.addMhs);
+
+    app.route('/update')
+        .put(jsonku.updateMhs);
+
+    app.route('/delete')
+        .put(jsonku.delMhs);
 };

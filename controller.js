@@ -46,3 +46,33 @@ exports.addMhs = function(req, res){
         }
     });
 };
+
+//update data
+exports.updateMhs = function(req, res){
+    var id = req.body.id_mahasiswa;
+    var nim = req.body.nim;
+    var nama = req.body.nama;
+    var jurusan = req.body.jurusan;
+
+    connection.query("UPDATE mahasiswa SET nim=?, nama=?, jurusan=? WHERE id_mahasiswa=?", [nim,nama, jurusan, id],
+        function(err, rows, fields){
+            if(err){
+                console.log(err);
+            }else{
+                response.ok("update suces",res)
+            }
+        });
+}
+
+exports.delMhs = function(req, res){
+    var id = req.body.id_mahasiswa;
+
+    connection.query("DELETE FROM mahasiswa WHERE id_mahasiswa = ?", [id],
+    function(err, rows, fields){
+        if(err){
+            console.log(err);
+        }else{
+            response.ok("delete suces",res)
+        }
+    });   
+}
